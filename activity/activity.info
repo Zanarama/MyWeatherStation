@@ -1,0 +1,8 @@
+[Activity]
+name = MyWeatherStation
+bundle_id = weatherstation.laptop.org
+icon = exampleicon
+exec = sugar-activity activity.Example
+show_launcher = yes
+activity_version = 1
+license = GPLv2+
