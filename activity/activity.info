@@ -1,7 +1,7 @@
 [Activity]
 name = MyWeatherStation
 bundle_id = weatherstation.laptop.org
-icon = exampleicon
+icon = SunGuy
 exec = sugar-activity activity.Example
 show_launcher = yes
 activity_version = 1

@@ -47,7 +47,7 @@ class Example(Activity):
         self.set_canvas(grid)
 
         # Create & Add Label
-        label = Gtk.Label(label=_("Name: "))
+        label = Gtk.Label(label=_("Weather: "))
         grid.attach(label, 0, 0, 1, 1)
 
         # Add Output Label
@@ -62,7 +62,7 @@ class Example(Activity):
         entry.connect('key-release-event', self.emptyout, output)
 
         # Add a button
-        button = Gtk.Button(label=_("Greet!"))
+        button = Gtk.Button(label=_("POST RESULTS"))
         grid.attach(button, 0, 2, 1, 1)
 
         # Tell the button to run a class method
@@ -73,7 +73,7 @@ class Example(Activity):
 
     def greeter(self, button, entry, output):
         if len(entry.get_text()) > 0:
-            output.set_text("Hello " + entry.get_text() + "!")
+            output.set_text("WEATHER TODAY IS: " + entry.get_text())
         else:
             output.set_text("Please entry your name.")
 
