@@ -1,5 +1,5 @@
 
-#MyWeatherStation
+#MyWeatherStation1
 
 This is the documentation for the MyWeatherStation XO Activity Started in 2013 in the RIT HFoss course. Credit for the initial project goes to Suzanne Reed, Chris Cordi, Greg Ekstrom, and Rob Clifford.
 The first set of information for the project is the specifics of the MyWeatherStation project, and then the rest will be the README from the Sugar_Activity_QuickStart on which our project is based. 
