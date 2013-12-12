@@ -1,4 +1,15 @@
 
+#MyWeatherStation
+
+This is the documentation for the MyWeatherStation XO Activity Started in 2013 in the RIT HFoss course. Credit for the initial project goes to Suzanne Reed, Chris Cordi, Greg Ekstrom, and Rob Clifford.
+The first set of information for the project is the specifics of the MyWeatherStation project, and then the rest will be the README from the Sugar_Activity_QuickStart on which our project is based. 
+
+#Overview
+
+In essence, MyWeatherStation is an XO application designed to allow the user to report the weather and temperature conditions in their area to their XO Journal, in order to improve the state of meteorological information for the international
+community, as well as to make it easier for people in remote regions of the world to track and improve their weather reporting in order to better plan for seasonal changes. 
+
+
 # Sugar_Activity_Quickstart
 
 This is the framework for a Sugar Activity. Everything needed to quickly start an activity for the Sugar OLPC XO. Credit for this repo is given to Robin Brooke, whose blog can be found [here: http://rbrooke.blogspot.com/2010/01/creating-xo-file.html](http://rbrooke.blogspot.com/2010/01/creating-xo-file.html)
