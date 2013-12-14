@@ -18,7 +18,6 @@ from sugar3.activity.widgets import ActivityButton
 from gi.repository import Gtk
 from gettext import gettext as _
 
-
 class Example(Activity):
     def __init__(self, sugar_handle):
         Activity.__init__(self, sugar_handle)
@@ -52,30 +51,48 @@ class Example(Activity):
 
         # Add Output Label
         output = Gtk.Label()
-        grid.attach(output, 1, 1, 1, 1)
+        grid.attach(output, 0, 6, 1, 1)
 
-        # Create & Add Text Entry
+        # Create & Add Text Entry x2
         entry = Gtk.Entry()
         grid.attach(entry, 0, 1, 1, 1)
+        entry2 = Gtk.Entry()
+        grid.attach(entry2, 0, 2, 1, 1)
 
         # Empty output on keypress in entry
         entry.connect('key-release-event', self.emptyout, output)
+        entry2.connect('key-release-event', self.emptyout, output)
 
-        # Add a button
-        button = Gtk.Button(label=_("POST RESULTS"))
-        grid.attach(button, 0, 2, 1, 1)
+        # Add buttons
+        sunnyButton = Gtk.Button(label=_("Sunny"))
+        grid.attach(sunnyButton, 0, 3, 1, 1)
+        
+        cloudyButton = Gtk.Button(label=_("Cloudy"))
+        grid.attach(cloudyButton, 1, 3, 1, 1)
 
-        # Tell the button to run a class method
-        button.connect('clicked', self.greeter, entry, output)
+        rainyButton = Gtk.Button(label=_("Rainy"))
+        grid.attach(rainyButton, 2, 3, 1, 1)
+
+        snowyButton = Gtk.Button(label=_("Snowy"))
+        grid.attach(snowyButton, 3, 3, 1, 1)
+
+        # Tell the buttons to run a class method
+        sunnyButton.connect('clicked', self.showWeather, "Sunny", entry, entry2, output)
+        cloudyButton.connect('clicked', self.showWeather, "Cloudy", entry, entry2, output)
+        rainyButton.connect('clicked', self.showWeather, "Rainy", entry, entry2, output)
+        snowyButton.connect('clicked', self.showWeather, "Snowy", entry, entry2, output)
 
         # Show all components (otherwise none will be displayed)
         self.show_all()
 
-    def greeter(self, button, entry, output):
+    def greeter(self, button, entry, entry2, output):
         if len(entry.get_text()) > 0:
-            output.set_text("WEATHER TODAY IS: " + entry.get_text())
+            output.set_text("WEATHER TODAY IS: \n" + entry.get_text() + "\n" + entry2.get_text())
         else:
-            output.set_text("Please entry your name.")
+            output.set_text("Enter the weather.")
 
-    def emptyout(self, entry, event, output):
+    def showWeather(self, button, state, entry, entry2, output):
+        output.set_text("Weather State is: " + state + ". " + "Temperature is " + entry.get_text() + ". Humidity is " + entry2.get_text())
+
+    def emptyout(self, entry, entry2, event, output):
         output.set_text("")
