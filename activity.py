@@ -20,6 +20,7 @@ from gettext import gettext as _
 
 class Example(Activity):
     def __init__(self, sugar_handle):
+
         Activity.__init__(self, sugar_handle)
 
         # Create a Toolbar
@@ -30,6 +31,19 @@ class Example(Activity):
 
         # Add Activity Button
         toolbar.insert(ActivityButton(self), -1)
+
+        #Load art assets?
+        cloudimg = Gtk.Image()
+        cloudimg.set_from_file('activity/art/Buttons/Cloudy.png')
+        
+        sunimg = Gtk.Image()
+        sunimg.set_from_file('activity/art/Buttons/Sun.png')
+
+        rainimg = Gtk.Image()
+        rainimg.set_from_file('activity/art/Buttons/RainyCloud.png')
+
+        snowimg = Gtk.Image()
+        snowimg.set_from_file('activity/art/Buttons/SnowyCloud.png')
 
         # Create & Add Separator
         separator = Gtk.SeparatorToolItem(draw=False)
@@ -64,16 +78,16 @@ class Example(Activity):
         entry2.connect('key-release-event', self.emptyout, output)
 
         # Add buttons
-        sunnyButton = Gtk.Button(label=_("Sunny"))
+        sunnyButton = Gtk.Button(image=_(sunimg))
         grid.attach(sunnyButton, 0, 3, 1, 1)
         
-        cloudyButton = Gtk.Button(label=_("Cloudy"))
+        cloudyButton = Gtk.Button(image=_(cloudimg))
         grid.attach(cloudyButton, 1, 3, 1, 1)
 
-        rainyButton = Gtk.Button(label=_("Rainy"))
+        rainyButton = Gtk.Button(image=_(rainimg))
         grid.attach(rainyButton, 2, 3, 1, 1)
 
-        snowyButton = Gtk.Button(label=_("Snowy"))
+        snowyButton = Gtk.Button(image=_(snowimg))
         grid.attach(snowyButton, 3, 3, 1, 1)
 
         # Tell the buttons to run a class method
