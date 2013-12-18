@@ -19,7 +19,8 @@ from gi.repository import Gtk
 from gettext import gettext as _
 
 # Other imports
-import datatime
+import datetime
+import os
 
 class Example(Activity):
     def __init__(self, sugar_handle):
@@ -51,6 +52,21 @@ class Example(Activity):
         snowimg = Gtk.Image()
         snowimg.set_from_file('activity/art/Buttons/SnowyCloud.png')
 
+        stormimg = Gtk.Image()
+        stormimg.set_from_file('activity/art/Buttons/ThunderCloud.png')
+
+        windimg = Gtk.Image()
+        stormimg.set_from_file('activity/art/Buttons/WindyCloud.png')
+
+        hotimg = Gtk.Image()
+        hotimg.set_from_file('activity/art/Buttons/HotSun.png')
+
+        thermoimg = Gtk.Image()
+        thermoimg.set_from_file('activity/art/Buttons/Thermometer.png')
+
+        humidimg = Gtk.Image()
+        humidimg.set_from_file('activity/art/Buttons/Humidity.png')
+
         # Create & Add Separator
         separator = Gtk.SeparatorToolItem(draw=False)
         separator.set_expand(True)
@@ -71,13 +87,13 @@ class Example(Activity):
 
         # Add Output Label
         output = Gtk.Label()
-        grid.attach(output, 0, 6, 1, 1)
+        grid.attach(output, 0, 6, 5, 1)
 
         # Create & Add Text Entry x2
         entry = Gtk.Entry()
-        grid.attach(entry, 0, 1, 1, 1)
+        grid.attach(entry, 1, 1, 2, 1)
         entry2 = Gtk.Entry()
-        grid.attach(entry2, 0, 2, 1, 1)
+        grid.attach(entry2, 1, 2, 2, 1)
 
         # Empty output on keypress in entry
         entry.connect('key-release-event', self.emptyout, output)
@@ -96,11 +112,29 @@ class Example(Activity):
         snowyButton = Gtk.Button(image=_(snowimg))
         grid.attach(snowyButton, 3, 3, 1, 1)
 
+        stormyButton = Gtk.Button(image=_(stormimg))
+        grid.attach(stormyButton, 4, 3, 1, 1)
+
+        hotButton = Gtk.Button(image=_(hotimg))
+        grid.attach(hotButton, 5, 3, 1, 1)
+
+        windyButton = Gtk.Button(image=_(windimg))
+        grid.attach(windyButton, 6, 3, 1, 1)
+
+        tempButton = Gtk.Button(image=_(thermoimg))
+        grid.attach(tempButton, 0, 1, 1, 1)
+
+        humidButton = Gtk.Button(image=_(humidimg))
+        grid.attach(humidButton, 0, 2, 1, 1)
+
         # Tell the buttons to run a class method
         sunnyButton.connect('clicked', self.showWeather, "Sunny", entry, entry2, output)
         cloudyButton.connect('clicked', self.showWeather, "Cloudy", entry, entry2, output)
         rainyButton.connect('clicked', self.showWeather, "Rainy", entry, entry2, output)
         snowyButton.connect('clicked', self.showWeather, "Snowy", entry, entry2, output)
+        stormyButton.connect('clicked', self.showWeather, "Stormy", entry, entry2, output)
+        hotButton.connect('clicked', self.showWeather, "Hot", entry, entry2, output)
+        windyButton.connect('clicked', self.showWeather, "Windy", entry, entry2, output)
 
         # Show all components (otherwise none will be displayed)
         self.show_all()
@@ -134,7 +168,7 @@ class Example(Activity):
         finally:
             f.close()
 
-    def read_file(self, filepath):
+    """def read_file(self, filepath):
         logging.debug('Reading activity data..')
         data = self.get_data(file_path)
 
@@ -147,4 +181,4 @@ class Example(Activity):
             data = fd.read()
         finally:
             fd.close()
-        return data
+        return data"""
