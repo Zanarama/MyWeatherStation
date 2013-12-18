@@ -56,7 +56,7 @@ class Example(Activity):
         stormimg.set_from_file('activity/art/Buttons/ThunderCloud.png')
 
         windimg = Gtk.Image()
-        stormimg.set_from_file('activity/art/Buttons/WindyCloud.png')
+        windimg.set_from_file('activity/art/Buttons/WindyCloud.png')
 
         hotimg = Gtk.Image()
         hotimg.set_from_file('activity/art/Buttons/HotSun.png')
@@ -127,6 +127,10 @@ class Example(Activity):
         humidButton = Gtk.Button(image=_(humidimg))
         grid.attach(humidButton, 0, 2, 1, 1)
 
+        #Add Log Button, make it work
+        logButton = Gtk.Button(label=_("Send to Journal"))
+        grid.attach(logButton, 0, 7, 2, 1)
+
         # Tell the buttons to run a class method
         sunnyButton.connect('clicked', self.showWeather, "Sunny", entry, entry2, output)
         cloudyButton.connect('clicked', self.showWeather, "Cloudy", entry, entry2, output)
@@ -147,11 +151,12 @@ class Example(Activity):
 
     def showWeather(self, button, state, entry, entry2, output):
         output.set_text("Weather State is: " + state + ". " + "Temperature is " + entry.get_text() + ". Humidity is " + entry2.get_text())
+        self.logButton.connect('clicked', self.write_files, self, filepath, state, entry.get_text(), entry2.get_text())
 
     def emptyout(self, entry, entry2, event, output):
         output.set_text("")
 
-    def write_files(self, file_path, weather, temperature, humidity):
+    def write_files(self, weather, file_path, temperature, humidity):
         logging.debug('Writing Weather Data...')
         date = datetime.datetime.now()
 
