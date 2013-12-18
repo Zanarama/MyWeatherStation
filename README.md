@@ -34,3 +34,6 @@ This project was created using the Sugar Activity Quickstart. To build the proje
     ./setup.py dist_xo
 
 You have now created an xo file to run.
+
+#Licencing
+This project is licenced under GPL3+.
