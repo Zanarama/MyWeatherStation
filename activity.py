@@ -18,6 +18,9 @@ from sugar3.activity.widgets import ActivityButton
 from gi.repository import Gtk
 from gettext import gettext as _
 
+# Other imports
+import datatime
+
 class Example(Activity):
     def __init__(self, sugar_handle):
 
@@ -31,6 +34,9 @@ class Example(Activity):
 
         # Add Activity Button
         toolbar.insert(ActivityButton(self), -1)
+
+        # filepath to write to journal
+        
 
         #Load art assets?
         cloudimg = Gtk.Image()
@@ -110,3 +116,35 @@ class Example(Activity):
 
     def emptyout(self, entry, entry2, event, output):
         output.set_text("")
+
+    def write_files(self, file_path, weather, temperature, humidity):
+        logging.debug('Writing Weather Data...')
+        date = datetime.datetime.now()
+
+        # save current state
+        self.metadata['date'] = date
+        self.metadata['weather'] = weather
+        self.metadata['temperature'] = temperature
+        self.metadata['humidity'] =  humidity
+
+        # write data to journal for posterity
+        f = open(file_path, 'w')
+        try:
+            f.write(date+"|"+weather+"|"+temperature+"|"+humidity+"\n")
+        finally:
+            f.close()
+
+    def read_file(self, filepath):
+        logging.debug('Reading activity data..')
+        data = self.get_data(file_path)
+
+        for entry in data:
+            # process data into Weather Objects
+
+    def get_data(self, filepath):
+        fd = open(file_path, 'r')
+        try:
+            data = fd.read()
+        finally:
+            fd.close()
+        return data
