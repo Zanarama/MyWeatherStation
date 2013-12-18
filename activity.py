@@ -36,7 +36,7 @@ class Example(Activity):
         toolbar.insert(ActivityButton(self), -1)
 
         # filepath to write to journal
-        
+        filepath = os.path.join(self.get_activity_root(), "data")  
 
         #Load art assets?
         cloudimg = Gtk.Image()
